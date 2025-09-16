@@ -30,6 +30,6 @@ export class HeroService {
 
     deleteHero(id: number): Observable<void> {
         this.heroes = this.heroes.filter(hero => hero.id !== id);
-        return of();
+        return of(void 0);
     }
 }
