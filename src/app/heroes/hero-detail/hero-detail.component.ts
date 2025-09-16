@@ -1,10 +1,10 @@
-import {Component, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { HeroService } from "../hero.service";
 import { Hero } from "../hero";
 import { ActivatedRoute } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { RouterModule, Router } from "@angular/router";
 
 @Component({
     selector: "app-hero-detail",
@@ -18,11 +18,27 @@ export class HeroDetailComponent implements OnInit {
 
     constructor(
         private heroService: HeroService,
-        private route: ActivatedRoute
-    ) {}
+        private route: ActivatedRoute,
+        private router: Router // thêm vào
+    ) { }
 
     ngOnInit(): void {
         const heroId = Number(this.route.snapshot.paramMap.get("id"));
         this.heroService.getHero(heroId).subscribe(h => this.hero = h);
+    }
+
+    deleteHero(): void {
+        if (!this.hero) return;
+        const confirmed = window.confirm(`Bạn có chắc muốn xóa hero "${this.hero.name}"?`);
+        if (confirmed) {
+            this.heroService.deleteHero(this.hero.id).subscribe(() => {
+                this.router.navigate(['/heroes']);
+            });
+        }
+    }
+
+    goBack(): void {
+        this.router.navigate(['/heroes']);
+        // window.history.back();
     }
 }

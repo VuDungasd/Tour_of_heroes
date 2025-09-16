@@ -1,8 +1,18 @@
 <h2>Heroes</h2>
-<ul>
-  <li *ngFor="let hero of heroes">
-    <a [routerLink]="['/heroes', hero.id]">
-      {{ hero.name }}
-    </a>
-  </li>
-</ul>
+<div class="hero-list">
+  <ul>
+    <li *ngFor="let hero of heroes">
+      <div class="hero-row">
+        <span class="hero-id">
+          <a [routerLink]="['/heroes', hero.id]">{{ hero.id }}</a>
+        </span>
+        <span class="hero-name">
+          <a [routerLink]="['/heroes', hero.id]">{{ hero.name }}</a>
+        </span>
+      </div>
+    </li>
+  </ul>
+  <div class="add-hero-button">
+    <button [routerLink]="['/add']">Add Hero</button>
+  </div>
+</div>

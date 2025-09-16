@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { routes } from './app-routing.module';
-import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
-import { HeroListComponent } from './heroes/hero-list/hero-list.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeroDetailComponent, DashboardComponent],
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
